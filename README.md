@@ -71,6 +71,3 @@ The feasibility and viability of the DeDoS framework depend on several factors:
 3. AWS Shield: DDoS attack protection: https://aws.amazon.com/shield/ddos-attack-protection/
 4. Research paper by Rashmi V. Deshmukh and Kailas K. Devadkar: https://www.sciencedirect.com/science/article/pii/S1877050915007541
 5. Research paper by Anshuman Singh and Brij B. Gupta: https://www.researchgate.net/publication/363114413_Distributed_Denial-of-Service_DDoS_Attacks_and_Defense_Mechanisms_in_Various_Web-Enabled_Computing_Platforms_Issues_Challenges_and_Future_Research_Directions
-
-Citations:
-[1] https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/33761817/33b7ddef-11c5-4c24-a744-93421f0804f5/DDOS_SIH_v1-2.pptx
