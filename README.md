@@ -1,8 +1,6 @@
-DeDoS Framework
 
-## Overview
-
-The **Smart India Hackathon 2024** presented a challenge titled **"DDoS Protection System for Cloud: Architecture and Tool,"** under the theme of Blockchain and Cybersecurity. Our Team **Semi-Hyperbola** proposed a national-level DDoS protection framework called **DeDoS** to tackle this issue.
+## DeDoS Framework
+The DeDoS Framework is an innovative and comprehensive solution designed to safeguard against Distributed Denial-of-Service (DDoS) attacks. By leveraging advanced technologies and a national network of dedicated servers, DeDoS aims to provide robust protection for critical government infrastructure and services. This framework not only enhances the resilience of web applications but also ensures uninterrupted access to essential online resources. With a focus on indigenous development, DeDoS empowers organizations to effectively detect, mitigate, and recover from DDoS attacks, ultimately strengthening the cybersecurity landscape across the nation.
 
 ### Key Features of DeDoS
 - **National Software Framework**: Designed to be deployed on dedicated servers across the country.
