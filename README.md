@@ -1,8 +1,8 @@
-# Smart India Hackathon 2024: DeDoS Framework
+DeDoS Framework
 
 ## Overview
 
-The **Smart India Hackathon 2024** presented a challenge titled **"DDoS Protection System for Cloud: Architecture and Tool,"** under the theme of Blockchain and Cybersecurity. Team **Semi-Hyperbola** proposed a national-level DDoS protection framework called **DeDoS** to tackle this issue.
+The **Smart India Hackathon 2024** presented a challenge titled **"DDoS Protection System for Cloud: Architecture and Tool,"** under the theme of Blockchain and Cybersecurity. Our Team **Semi-Hyperbola** proposed a national-level DDoS protection framework called **DeDoS** to tackle this issue.
 
 ### Key Features of DeDoS
 - **National Software Framework**: Designed to be deployed on dedicated servers across the country.
