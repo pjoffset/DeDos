@@ -1,73 +1,126 @@
-## Summary
+# Smart India Hackathon 2024: DeDoS Framework
 
-The Smart India Hackathon 2024 presented a problem statement titled "DDoS Protection System for Cloud: Architecture and Tool" under the theme of Blockchain and Cybersecurity. Team Semi-Hyperbola, with ID 4, proposed a national-level DDoS protection framework called DeDoS to address this challenge.
+## Overview
 
-DeDoS is designed as a software framework that can be set up on dedicated servers nationwide. It employs an algorithm for detecting DDoS attacks and leverages content delivery networks (CDNs) on central servers across the nation to reduce the intensity of attacks.
+The **Smart India Hackathon 2024** presented a challenge titled **"DDoS Protection System for Cloud: Architecture and Tool,"** under the theme of Blockchain and Cybersecurity. Team **Semi-Hyperbola** proposed a national-level DDoS protection framework called **DeDoS** to tackle this issue.
 
-DDoS attacks are a significant problem, with around 36,000 such attacks taking place worldwide every day. State-sponsored hacktivist groups may target critical government websites or real-time systems. While commercial players like Cloudflare, Akamai, and Azure offer DDoS protection solutions, the proposed DeDoS framework allows the government to implement an indigenous server dedicated to handling DDoS traffic, which can be used by all government web applications as well as private business applications.
+### Key Features of DeDoS
+- **National Software Framework**: Designed to be deployed on dedicated servers across the country.
+- **DDoS Attack Detection**: Utilizes algorithms to identify DDoS attacks.
+- **Content Delivery Networks (CDNs)**: Leverages CDNs on central servers to mitigate attack intensity.
 
-The technical approach for DeDoS includes automated response mechanisms like rate limiting, geo-blocking, and web application firewalls. It also incorporates traffic scrubbing, recovery mechanisms, health checks, firewalls, intrusion prevention systems, and machine learning algorithms to identify and mitigate unusual traffic patterns. Open-source DDoS mitigation tools and technologies will be utilized to provide basic protection and customization for specific needs.
+### Importance of DDoS Protection
+DDoS attacks are prevalent, with approximately **36,000 attacks occurring daily worldwide**. These attacks can disrupt critical government services and real-time systems, necessitating robust protective measures.
 
-The feasibility and viability of DeDoS lie in its ability to provide indigenous DDoS protection for all critical government infrastructure, saving money compared to outsourcing to commercial solutions. However, developing an in-house solution requires a dedicated and expensive setup, especially for handling large data with AI and machine learning algorithms. Automated mitigation strategies like IP blocking and rate limiting can be integrated to address these challenges.
+## Technical Approach
 
-## Technical Details
+### Automated Response Mechanisms
+- **Rate Limiting**: Controls the number of requests from individual IP addresses.
+- **Geo-Blocking**: Blocks traffic from specific geographic regions during an attack.
 
-### DDoS Attacks and Their Impact
+### Web Application Firewall
+- Filters and monitors HTTP requests to block malicious traffic based on predefined rules.
 
-A DDoS (distributed denial-of-service) attack is a method of disrupting the normal functioning of a target network or server by overwhelming it with large volumes of internet traffic. These attacks are conducted remotely by an attacker using networks of devices infected with malware, known as bots or botnets. During an attack, each bot submits requests to the target's IP address, aiming to overwhelm the target with requests and lead to denial-of-service for legitimate traffic[1].
+### Traffic Scrubbing
+- Filters out harmful traffic before it reaches the server infrastructure.
 
-DDoS attacks have a significant impact on web applications and services. Worldwide, around 36,000 DDoS attacks take place every day, and any state-sponsored hacktivist group may target critical government websites or real-time systems[1]. These attacks can lead to downtime, data breaches, and financial losses for the affected organizations.
+### Recovery Mechanisms
+- Automatic backup servers ensure continuity during attacks or failures.
+- CDNs enhance bandwidth availability to deflect strong DDoS attacks.
 
-### Existing DDoS Protection Solutions
+### Health Checks
+- Regular monitoring of service status to redirect traffic if necessary.
 
-Several commercial players offer DDoS protection solutions, including Cloudflare, Akamai, Azure, and others. These solutions typically provide services such as traffic scrubbing, content delivery networks (CDNs), and machine learning algorithms to identify and mitigate unusual traffic patterns[1].
+### Firewalls and Intrusion Prevention Systems (IPS)
+- Advanced firewalls and IPS detect and block malicious traffic using machine learning.
 
-However, the proposed DeDoS framework aims to provide an indigenous solution for the government of India, allowing them to implement a dedicated server for handling DDoS traffic. This server can be used by all government web applications as well as private business applications, potentially saving money compared to outsourcing to commercial solutions[1].
+### Machine Learning Integration
+- Employs machine learning algorithms to recognize and respond to unusual traffic patterns.
 
-### Technical Approach for DeDoS
+### Open-Source Tools
+- Utilizes tools like **Fail2Ban** and **Snort** for basic protection and customization.
 
-The DeDoS framework incorporates several features and techniques to detect, mitigate, and recover from DDoS attacks:
+## Feasibility and Viability
 
-#### Automated Response Mechanisms
-- **Rate Limiting**: Automatically limit the rate of incoming requests from individual IP addresses or IP ranges or redirect them to CAPTCHA or interstitial pages[1].
-- **Geo-Blocking**: Block traffic from specific geographic regions if the attack originates from those areas[1].
+The DeDoS framework's viability hinges on several factors:
+- **Cost Efficiency**: Offers indigenous protection at a potentially lower cost than commercial solutions.
+- **Indigenous Development**: Provides a dedicated server for government applications, enhancing security.
+- **AI Implementation**: Requires investment in AI and machine learning infrastructure.
+- **Automated Mitigation Strategies**: Integrates techniques like IP blocking and rate limiting for effective defense.
 
-#### Web Application Firewall
-- Deploy a Web Application Firewall to filter and monitor HTTP requests, blocking malicious traffic based on predefined rules and patterns[1].
+## Code Snippets
 
-#### Traffic Scrubbing
-- Deploy scrubbing services that filter malicious traffic before it reaches the infrastructure[1].
+Below are code snippets that illustrate basic functionalities that could be part of the DeDoS framework:
 
-#### Recovery Mechanisms
-- Implement automatic backup servers or regions in the event of an attack or infrastructure failure[1].
-- Deploy CDNs to increase the availability of bandwidth to deflect the strongest DDoS attacks[1].
+### Rate Limiting Example (Python)
+```python
+from flask import Flask, request, jsonify
+from time import time
 
-#### Health Checks
-- Use health checks to monitor the status of services and automatically redirect traffic if a service becomes unresponsive[1].
+app = Flask(__name__)
+requests = {}
 
-#### Firewalls and Intrusion Prevention Systems
-- Deploy advanced firewalls and IPS to detect and block malicious traffic with the help of machine learning[1].
+@app.route('/api', methods=['GET'])
+def api():
+    ip = request.remote_addr
+    current_time = time()
 
-#### Machine Learning
-- Utilize machine learning algorithms to identify and mitigate unusual traffic patterns[1].
+    # Initialize request count for the IP if not present
+    if ip not in requests:
+        requests[ip] = []
 
-#### Open-Source Tools
-- Utilize open-source DDoS mitigation tools and technologies, such as Fail2Ban and Snort, which can provide basic protection and be customized for specific needs[1].
+    # Filter out old requests
+    requests[ip] = [req for req in requests[ip] if current_time - req < 60]
 
-### Feasibility and Viability Considerations
+    # Check if rate limit is exceeded (e.g., more than 100 requests in 60 seconds)
+    if len(requests[ip]) > 100:
+        return jsonify({"error": "Rate limit exceeded"}), 429
 
-The feasibility and viability of the DeDoS framework depend on several factors:
+    # Log the request time
+    requests[ip].append(current_time)
+    return jsonify({"message": "Request successful!"})
 
-- **Cost**: Operating the framework on a dedicated national DDoS management server capable of handling high throughput can drive up costs[1].
-- **Indigenous Protection**: Once implemented, the DeDoS framework can provide indigenous DDoS protection for all critical government infrastructure[1].
-- **Cost Savings**: Developing an in-house DDoS protection solution instead of outsourcing to commercial solutions can save money in the long run[1].
-- **AI and Machine Learning**: Implementing AI and machine learning algorithms requires a dedicated and expensive setup, especially when handling large amounts of data[1].
-- **Automated Mitigation**: Strategies like IP blocking and rate limiting can be integrated into the DeDoS framework to provide automated mitigation capabilities[1].
+if __name__ == '__main__':
+    app.run()
+```
 
-### Research and Reference Articles
+### Geo-Blocking Example (JavaScript)
+```javascript
+const express = require('express');
+const app = express();
 
-1. Wikipedia article on DDoS mitigation: https://en.wikipedia.org/wiki/DDoS_mitigation
-2. Cloudflare's guide on what is a DDoS attack: https://www.cloudflare.com/learning/ddos/what-is-a-ddos-attack/
-3. AWS Shield: DDoS attack protection: https://aws.amazon.com/shield/ddos-attack-protection/
-4. Research paper by Rashmi V. Deshmukh and Kailas K. Devadkar: https://www.sciencedirect.com/science/article/pii/S1877050915007541
-5. Research paper by Anshuman Singh and Brij B. Gupta: https://www.researchgate.net/publication/363114413_Distributed_Denial-of-Service_DDoS_Attacks_and_Defense_Mechanisms_in_Various_Web-Enabled_Computing_Platforms_Issues_Challenges_and_Future_Research_Directions
+const blockedRegions = ['192.168.1.0/24']; // Example blocked IP range
+
+app.use((req, res, next) => {
+    const clientIp = req.ip;
+    
+    // Check if the client's IP is in the blocked regions
+    if (blockedRegions.includes(clientIp)) {
+        return res.status(403).send('Access denied from your region.');
+    }
+    
+    next();
+});
+
+app.get('/', (req, res) => {
+    res.send('Welcome!');
+});
+
+app.listen(3000, () => {
+    console.log('Server running on port 3000');
+});
+```
+
+## Conclusion
+
+The DeDoS framework represents a proactive approach to combat DDoS attacks by leveraging indigenous resources and advanced technology. Its implementation could significantly enhance the security posture of critical governmental infrastructure while providing a cost-effective alternative to existing commercial solutions.
+
+Citations:
+[1] https://pib.gov.in/PressReleseDetailm.aspx?PRID=2083566
+[2] https://engineersplanet.com/sih-problem-statements-blockchain-and-cybersecurity/
+[3] https://www.pmindia.gov.in/en/news_updates/pm-interacts-with-participants-of-smart-india-hackathon-2024/
+[4] https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2083360
+[5] https://www.sih.gov.in
+[6] https://www.driems.ac.in/wp-content/uploads/2024/08/SIH_2024_PS.pdf
+[7] https://www.sih.gov.in/sih2024PS
+[8] https://qasih.mic.gov.in/sih2024PS
